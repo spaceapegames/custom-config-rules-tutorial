@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: Custom Config Rule
+
+Resources:
+  
+  DatabaseCheckFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Runtime: go1.x
+      CodeUri: ./main.zip
+      Handler: bin/databaseTerminationProtection
+      Policies:
+      - Statement:
+        - Sid: ConfigPutEvaluation
+          Effect: Allow
+          Action:
+          - config:PutEvaluations
+          Resource: "*" # No resource level permissions :(
+
+  DatabaseCheckRule:
+    Type: AWS::Config::ConfigRule
+    DependsOn: DatabaseCheckConfigRole
+    Properties:
+      ConfigRuleName: "database-ebs-optimization"
+      Description: "Checks for production dbs without EBS optimization"
+      MaximumExecutionFrequency: One_Hour
+      Scope:
+        ComplianceResourceTypes:
+        - "AWS::EC2::Instance"
+      Source:
+        Owner: CUSTOM_LAMBDA
+        SourceDetails:
+        - EventSource: aws.config
+          MessageType: ConfigurationItemChangeNotification
+        SourceIdentifier:
+          !GetAtt
+        - DatabaseCheckFunction
+        - Arn
+
+  DatabaseCheckConfigRole:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        !GetAtt
+      - DatabaseCheckFunction
+      - Arn
+      Action: lambda:InvokeFunction
+      Principal: config.amazonaws.com

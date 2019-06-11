@@ -1,0 +1,189 @@
+{
+  "configurationItem": {
+    "configurationItemCaptureTime": "2019-03-25T17:18:51.921Z",
+    "resourceCreationTime": "2019-03-25T17:18:51.921Z",
+    "availabilityZone": "us-east-1b",
+    "awsRegion": "us-east-1",
+    "tags": {
+      "ENVIRONMENT": "Production",
+      "SERVICE": "database"
+    },
+    "resourceType": "AWS::EC2::Instance",
+    "resourceId": "i-12345678910effeeee",
+    "configurationStateId": 10000100000,
+    "relatedEvents": [],
+    "relationships": [
+      {
+        "resourceType": "AWS::EC2::NetworkInterface",
+        "resourceId": "eni-xxxxxx",
+        "relationshipName": "Contains NetworkInterface"
+      },
+      {
+        "resourceType": "AWS::EC2::SecurityGroup",
+        "resourceId": "sg-11111111",
+        "relationshipName": "Is associated with SecurityGroup"
+      },
+      {
+        "resourceType": "AWS::EC2::Subnet",
+        "resourceId": "subnet-1111111111",
+        "relationshipName": "Is contained in Subnet"
+      },
+      {
+        "resourceType": "AWS::EC2::Volume",
+        "resourceId": "vol-xxxxxx",
+        "relationshipName": "Is attached to Volume"
+      },
+      {
+        "resourceType": "AWS::EC2::VPC",
+        "resourceId": "vpc-12346789",
+        "relationshipName": "Is contained in Vpc"
+      }
+    ],
+    "arn": "arn:aws:ec2:us-east-1:123456789101:instance/i-12345678910effeeee",
+    "version": "1.3",
+    "configurationItemMD5Hash": "",
+    "supplementaryConfiguration": {},
+    "configuration": {
+      "amiLaunchIndex": 0,
+      "imageId": "ami-xxxx",
+      "instanceId": "i-12345678910effeeee",
+      "instanceType": "t3.micro",
+      "kernelId": null,
+      "keyName": "master",
+      "launchTime": "2019-06-04T10:30:56.000Z",
+      "monitoring": {
+        "state": "enabled"
+      },
+      "placement": {
+        "availabilityZone": "us-east-1b",
+        "affinity": null,
+        "groupName": "",
+        "partitionNumber": null,
+        "hostId": null,
+        "tenancy": "default",
+        "spreadDomain": null
+      },
+      "platform": null,
+      "privateDnsName": "ip-x-x-x-x.ec2.internal",
+      "privateIpAddress": "10.x.x.x",
+      "productCodes": [],
+      "publicDnsName": "",
+      "publicIpAddress": "3.x.x.x",
+      "ramdiskId": null,
+      "state": {
+        "code": 16,
+        "name": "running"
+      },
+      "stateTransitionReason": "",
+      "subnetId": "subnet-1111111111",
+      "vpcId": "vpc-12346789",
+      "architecture": "x86_64",
+      "blockDeviceMappings": [
+        {
+          "deviceName": "/dev/sda1",
+          "ebs": {
+            "attachTime": "2019-06-04T10:30:57.000Z",
+            "deleteOnTermination": true,
+            "status": "attached",
+            "volumeId": "xxxxx"
+          }
+        }
+      ],
+      "clientToken": "xxxxx_subnet-1111111111_1",
+      "ebsOptimized": false,
+      "enaSupport": true,
+      "hypervisor": "xen",
+      "iamInstanceProfile": {
+        "arn": "arn:aws:iam::123456789101:instance-profile/test",
+        "id": "xxx"
+      },
+      "instanceLifecycle": null,
+      "elasticGpuAssociations": [],
+      "elasticInferenceAcceleratorAssociations": [],
+      "networkInterfaces": [
+        {
+          "association": {
+            "ipOwnerId": "amazon",
+            "publicDnsName": "",
+            "publicIp": "3.x.x.x"
+          },
+          "attachment": {
+            "attachTime": "2019-06-04T10:30:56.000Z",
+            "attachmentId": "eni-attach-0e927e795d36466fa",
+            "deleteOnTermination": true,
+            "deviceIndex": 0,
+            "status": "attached"
+          },
+          "description": "",
+          "groups": [
+            {
+              "groupName": "test",
+              "groupId": "sg-11111111"
+            }
+          ],
+          "ipv6Addresses": [],
+          "macAddress": "12:x:x:x:x",
+          "networkInterfaceId": "eni-xxxxxx",
+          "ownerId": "123456789101",
+          "privateDnsName": null,
+          "privateIpAddress": "10.x.x.x",
+          "privateIpAddresses": [
+            {
+              "association": {
+                "ipOwnerId": "amazon",
+                "publicDnsName": "",
+                "publicIp": "3.x.x.x"
+              },
+              "primary": true,
+              "privateDnsName": null,
+              "privateIpAddress": "10.x.x.x"
+            }
+          ],
+          "sourceDestCheck": true,
+          "status": "in-use",
+          "subnetId": "subnet-1111111111",
+          "vpcId": "vpc-12346789",
+          "interfaceType": null
+        }
+      ],
+      "rootDeviceName": "/dev/sda1",
+      "rootDeviceType": "ebs",
+      "securityGroups": [
+        {
+          "groupName": "test",
+          "groupId": "sg-11111111"
+        }
+      ],
+      "sourceDestCheck": true,
+      "spotInstanceRequestId": null,
+      "sriovNetSupport": null,
+      "stateReason": null,
+      "tags": [
+        {
+          "key": "ENVIRONMENT",
+          "value": "Production"
+        },
+        {
+          "key": "SERVICE",
+          "value": "database"
+        }
+      ],
+      "virtualizationType": "hvm",
+      "cpuOptions": {
+        "coreCount": 1,
+        "threadsPerCore": 2
+      },
+      "capacityReservationId": null,
+      "capacityReservationSpecification": {
+        "capacityReservationPreference": "open",
+        "capacityReservationTarget": null
+      },
+      "hibernationOptions": {
+        "configured": false
+      },
+      "licenses": []
+    },
+    "configurationItemStatus": "ResourceDiscovered",
+    "accountId": "123456789101"
+  }
+}
