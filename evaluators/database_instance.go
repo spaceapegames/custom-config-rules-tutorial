@@ -20,9 +20,7 @@ type DbTerminationProtectionEvaluation struct {
 }
 
 func EvaluateDatabaseTerminationProtection(event events.ConfigEvent) (*DbTerminationProtectionEvaluation, error)  {
-
-	fmt.Println(event.InvokingEvent)
-
+	
 	// unmarshal the Invoking Event
 	var invokingEvent model.InvokingEvent
 	err := json.Unmarshal([]byte(event.InvokingEvent), &invokingEvent)
