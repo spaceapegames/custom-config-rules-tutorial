@@ -7,7 +7,7 @@ import (
 )
 
 func Handler(event events.ConfigEvent) error {
-	result, err := evaluators.EvaluateDatabaseTerminationProtection(event)
+	result, err := evaluators.EvaluateDbEbsOptimization(event)
 	if err != nil {
 		return err
 	}

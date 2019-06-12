@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestEvaluateDatabaseTerminationProtection(t *testing.T) {
+func TestEvaluateDbEbsOptimization(t *testing.T) {
 	EbsOptimized, err := ioutil.ReadFile("../fixtures/sampleConfigItem.json")
 	if err != nil {
 		t.Fatal(err)
@@ -51,7 +51,7 @@ func TestEvaluateDatabaseTerminationProtection(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			result, err := EvaluateDatabaseTerminationProtection(c.event)
+			result, err := EvaluateDbEbsOptimization(c.event)
 			if err != nil {
 				t.Fatal(err)
 			}

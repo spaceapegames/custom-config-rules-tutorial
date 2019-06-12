@@ -12,14 +12,14 @@ import (
 	"time"
 )
 
-type DbTerminationProtectionEvaluation struct {
+type DbEbsOptmizationEvaluation struct {
 	ResourceId string
 	Status string
 	NotificationTime string
 	ResultToken string
 }
 
-func EvaluateDatabaseTerminationProtection(event events.ConfigEvent) (*DbTerminationProtectionEvaluation, error)  {
+func EvaluateDbEbsOptimization(event events.ConfigEvent) (*DbEbsOptmizationEvaluation, error)  {
 	
 	// unmarshal the Invoking Event
 	var invokingEvent model.InvokingEvent
@@ -38,7 +38,7 @@ func EvaluateDatabaseTerminationProtection(event events.ConfigEvent) (*DbTermina
 	// if eventLeftScope then return immediately with NOT_APPLICABLE.
 	// (this is generally used to de-scope terminated instances)
 	if event.EventLeftScope {
-		return &DbTerminationProtectionEvaluation{
+		return &DbEbsOptmizationEvaluation{
 			ResourceId: invokingEvent.ConfigurationItem.ResourceID,
 			Status: configservice.ComplianceTypeNotApplicable,
 			NotificationTime: invokingEvent.NotificationCreationTime,
@@ -50,7 +50,7 @@ func EvaluateDatabaseTerminationProtection(event events.ConfigEvent) (*DbTermina
 		if environment, ok := invokingEvent.ConfigurationItem.Tags["ENVIRONMENT"]; ok && environment == "Production" {
 			if !*instance.EbsOptimized {
 				// A production database instance _without_ EBS optimization? Non-compliant mate.
-				return &DbTerminationProtectionEvaluation{
+				return &DbEbsOptmizationEvaluation{
 					ResourceId: invokingEvent.ConfigurationItem.ResourceID,
 					Status: configservice.ComplianceTypeNonCompliant,
 					NotificationTime: invokingEvent.NotificationCreationTime,
@@ -61,7 +61,7 @@ func EvaluateDatabaseTerminationProtection(event events.ConfigEvent) (*DbTermina
 	}
 
 	// This is NOT a Production database instance, so mark as compliant
-	return &DbTerminationProtectionEvaluation{
+	return &DbEbsOptmizationEvaluation{
 		ResourceId: invokingEvent.ConfigurationItem.ResourceID,
 		Status: configservice.ComplianceTypeCompliant,
 		NotificationTime: invokingEvent.NotificationCreationTime,
@@ -70,7 +70,7 @@ func EvaluateDatabaseTerminationProtection(event events.ConfigEvent) (*DbTermina
 
 }
 
-func CompleteEvaluation(evaluation *DbTerminationProtectionEvaluation) error {
+func CompleteEvaluation(evaluation *DbEbsOptmizationEvaluation) error {
 	svc := configservice.New(session.Must(session.NewSession()))
 
 	orderingTimestamp, err := time.Parse(time.RFC3339, evaluation.NotificationTime)

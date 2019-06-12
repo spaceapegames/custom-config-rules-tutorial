@@ -2,7 +2,7 @@ STACK_NAME="custom-config-rule-tutorial"
 S3_BUCKET ?= "custom-config-rule-tutorial"
 
 build:
-	GOOS=linux go build -o ./bin/databaseTerminationProtection ./handlers/databaseTerminationProtection/ \
+	GOOS=linux go build -o ./bin/ebsOptimizationCheck ./handlers/ebsOptimizationCheck/ \
 		&& zip -r main.zip bin/
 .PHONY: build
 

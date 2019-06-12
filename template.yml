@@ -10,7 +10,7 @@ Resources:
     Properties:
       Runtime: go1.x
       CodeUri: ./main.zip
-      Handler: bin/databaseTerminationProtection
+      Handler: bin/ebsOptimizationCheck
       Policies:
       - Statement:
         - Sid: ConfigPutEvaluation
