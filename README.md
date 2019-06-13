@@ -1,6 +1,6 @@
 # Creating Custom AWS Config Rules
 
-This code is intended as a companion to this article LINK.
+This code is intended as a companion to this article: https://medium.com/spaceapetech/custom-aws-config-rules-20d7995561a8.
 
 Together with the article, it provides an example of a custom AWS Config Rule written in Golang and deployed using SAM.
 
